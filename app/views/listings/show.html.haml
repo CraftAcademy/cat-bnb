@@ -1,0 +1,15 @@
+%h1= @listing.pet_name
+%p=@listing.pet_picture
+%p Dates: #{@listing.start_date} to #{@listing.end_date}
+
+%h2 Offers
+- if @listing.offers.any?
+  - @listing.offers.each do |offer|
+    .offer{id: dom_id(offer)}
+      %p= offer.name
+      %p= offer.email
+      %p= offer.location
+      %p #{offer.price} kr
+      %p= link_to "Accept offer", "#"
+- else
+  .message There are no offers on this listing

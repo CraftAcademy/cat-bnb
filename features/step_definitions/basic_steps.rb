@@ -21,3 +21,11 @@ end
 Then "stop" do
   binding.pry
 end
+
+When("I click {string} within {string} section") do |link, section|
+  name = Listing.find_by(pet_name: section)
+  dom_section = "#listing_#{name.id}"
+  within(dom_section) do
+    click_on link
+  end
+end
