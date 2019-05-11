@@ -1,0 +1,26 @@
+%h1= @listing.pet_name
+%p=@listing.pet_location
+%p=@listing.pet_description
+%p Dates: #{@listing.start_date} to #{@listing.end_date}
+%p=@listing.pet_picture
+
+%h2 Create your offer
+= form_with(model: [ @listing, @listing.offers.build ], local: true) do |form| 
+  %p
+    = form.label :name
+    %br/
+    = form.text_field :name
+  %p
+    = form.label :email
+    %br/
+    = form.text_field :email
+  %p
+    = form.label :location
+    %br/
+    = form.text_area :location
+  %p
+    = form.label :price
+    %br/
+    = form.number_field :price
+  %p
+    = form.submit "Create offer"

@@ -20,6 +20,10 @@ RSpec.describe Listing, type: :model do
     it { is_expected.to validate_presence_of :pet_picture }
   end
 
+  describe 'Associations' do
+    it { is_expected.to have_many(:offers)}
+  end
+
   describe 'Factory' do
     it 'should have a valid Factory' do
       expect(FactoryBot.create(:listing)).to be_valid

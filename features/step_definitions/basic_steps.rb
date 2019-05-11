@@ -18,6 +18,21 @@ When("I click {string} button") do |button|
   click_button button
 end
 
+When("I click on {string} within {string} section") do |content, section|
+  name = Listing.find_by(pet_name: section)
+  dom_section = "#listing_#{name.id}"
+  within(dom_section) do
+    expect(page).to have_content content
+  end
+end
+
+When("I click {string} within {string} section") do |link, section|
+  name = Listing.find_by(pet_name: section)
+  dom_section = "#listing_#{name.id}"
+  within(dom_section) do
+    click_on link
+  end
+end
 Then "stop" do
   binding.pry
 end

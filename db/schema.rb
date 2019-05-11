@@ -26,6 +26,17 @@ ActiveRecord::Schema.define(version: 2019_05_09_223219) do
     t.string "pet_picture"
   end
 
+  create_table "offers", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "location"
+    t.integer "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "listing_id"
+    t.index ["listing_id"], name: "index_offers_on_listing_id"
+  end
+
   create_table "profiles", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -49,5 +60,6 @@ ActiveRecord::Schema.define(version: 2019_05_09_223219) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "offers", "listings"
   add_foreign_key "profiles", "users"
 end
